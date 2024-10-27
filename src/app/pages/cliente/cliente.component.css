@@ -1,0 +1,68 @@
+.col-id {
+    width: 2%;
+    padding: 10px;
+    text-align: center;
+}
+
+.col-nome {
+    width: 15%;
+    padding: 10px;
+}
+
+.col-rg {
+    width: 6%;
+    padding: 10px;
+}
+
+.col-nasc {
+    width: 4%;
+    padding: 10px;
+}
+
+.col-sexo {
+    width: 7%;
+    padding: 10px;
+}
+
+.col-cel {
+    width: 5%;
+    padding: 10px;
+}
+
+.col-end {
+    width: 20%;
+    padding: 10px;
+}
+
+.col-email {
+    width: 15%;
+    padding: 10px;
+}
+
+.col-acoes {
+    width: 6%;
+}
+
+.lbl {
+    font-size: 13px;
+}
+
+.lblErro {
+    font-size: 13px;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.th {
+    background-color: rgb(0, 123, 255);
+    color: whitesmoke;
+}
+
+.toast {
+    width: 250px;
+}
+
+.tabela-linha-hover {
+    cursor: pointer;
+}
+

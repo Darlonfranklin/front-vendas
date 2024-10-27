@@ -1,0 +1,178 @@
+<div class="container">
+    <form [formGroup]="clienteForm" (ngSubmit)="salvarCliente($event)">
+        <fieldset class="border p-4 mt-2">
+            <legend class="w-auto">Cadastrar cliente</legend>
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="nome" class="form-label-sm lbl">Nome:</label>
+                        <div *ngIf="clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('nome')?.errors?.['required']">Nome é obrigatório.</div>
+                        </div>
+                    </div>
+                    <input type="text" id="nome" formControlName="nome" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="rg" class="form-label-sm lbl">RG:</label>
+                        <div *ngIf="clienteForm.get('rg')?.invalid && clienteForm.get('rg')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('rg')?.errors?.['required']">RG é obrigatório.</div>
+                        </div>
+                    </div>
+                    <input type="text" id="rg" formControlName="rg" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="dataNascimento" class="form-label-sm lbl align-middle">Data de Nascimento:</label>
+                        <div *ngIf="clienteForm.get('dataNascimento')?.invalid && clienteForm.get('dataNascimento')?.touched"
+                            class="text-danger lblErro align-middle ms-2">
+                            <div *ngIf="clienteForm.get('dataNascimento')?.errors?.['required']">Data de nascimento é
+                                obrigatória.</div>
+                            <div *ngIf="clienteForm.get('dataNascimento')?.errors?.['date']">Data de nascimento
+                                inválida.</div>
+                        </div>
+                    </div>
+                    <input type="date" id="dataNascimento" formControlName="dataNascimento"
+                        class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="endereco" class="form-label-sm lbl">Endereço:</label>
+                        <div *ngIf="clienteForm.get('endereco')?.invalid && clienteForm.get('endereco')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('endereco')?.errors?.['required']">Endereço é obrigatório.</div>
+                        </div>
+                    </div>
+                    <input type="text" id="endereco" formControlName="endereco" class="form-control form-control-sm" />
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="sexo" class="form-label-sm lbl">Sexo:</label>
+                        <div *ngIf="clienteForm.get('sexo')?.invalid && clienteForm.get('sexo')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('sexo')?.errors?.['required']">Sexo é obrigatório.</div>
+                        </div>
+                    </div>
+                    <select id="sexo" formControlName="sexo" class="form-select form-select-sm">
+                        <option value="">Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="celular" class="form-label-sm lbl">Celular:</label>
+                        <div *ngIf="clienteForm.get('celular')?.invalid && clienteForm.get('celular')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('celular')?.errors?.['required']">Celular é obrigatório.</div>
+                        </div>
+                    </div>
+                    <input type="text" id="celular" formControlName="celular" class="form-control form-control-sm">
+                </div>
+
+                <div class="col-md-12 mt-2">
+                    <div class="d-flex align-items-center">
+                        <label for="email" class="form-label-sm lbl">Email:</label>
+                        <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched"
+                            class="text-danger lblErro">
+                            <div *ngIf="clienteForm.get('email')?.errors?.['required']">Email é obrigatório.</div>
+                            <div *ngIf="clienteForm.get('email')?.errors?.['email']">Email inválido.</div>
+                        </div>
+                    </div>
+                    <input type="email" id="email" formControlName="email" class="form-control form-control-sm" />
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-secondary me-2 btn-sm">
+                    <i class="bi bi-floppy2-fill"></i>
+                    Gravar
+                </button>
+                <button type="button" class="btn btn-warning btn-sm">
+                    <i class="bi bi-recycle"></i>
+                    Cancelar
+                </button>
+            </div>
+        </fieldset>
+    </form>
+
+    <fieldset class="border p-4 mt-2">
+        <legend class="w-auto">Clientes cadastrados</legend>
+        <div class="mt-4">
+            <table *ngIf="itensPorPagina && itensPorPagina.length > 0"
+                class="table table-bordered table-striped table-hover table-sm">
+                <thead class="th">
+                    <tr>
+                        <th class="lbl">Código</th>
+                        <th class="lbl">Nome</th>
+                        <th class="lbl">RG</th>
+                        <th class="lbl">Data/Nasc</th>
+                        <th class="lbl">Endereço</th>
+                        <th class="lbl">Sexo</th>
+                        <th class="lbl">Celular</th>
+                        <th class="lbl">E-mail</th>
+                        <th class="lbl">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of itensPorPagina" class="lbl">
+                        <td class="col-id">{{ cliente.id }}</td>
+                        <td class="col-nome">{{ cliente.nome }}</td>
+                        <td class="col-rg">{{ cliente.rg }}</td>
+                        <td class="col-nasc">{{ cliente.dataNascimento }}</td>
+                        <td class="col-end">{{ cliente.endereco }}</td>
+                        <td class="col-sexo">{{ cliente.sexo }}</td>
+                        <td class="col-cel">{{ cliente.celular }}</td>
+                        <td class="col-email">{{ cliente.email }}</td>
+                        <td class="col-acoes">
+                            <button (click)="deletarCliente(cliente.id)" type="button" class="btn btn-warning btn-sm me-1"><i
+                                    class="bi bi-trash"></i></button>
+                            <button (click)="editarCliente(cliente)" type="button" class="btn btn-primary btn-sm"><i
+                                    class="bi bi-pencil-square"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item tabela-linha-hover" [class.disabled]="paginaAtual === 1">
+                    <a class="page-link" (click)="setPagina(paginaAtual - 1)" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <li class="page-item" *ngFor="let page of paginasVisiveis">
+                    <a class="page-link tabela-linha-hover" (click)="setPagina(page)"
+                        [class.active]="paginaAtual === page">{{ page }}</a>
+                </li>
+
+                <li class="page-item tabela-linha-hover" [class.disabled]="paginaAtual === totalPaginas">
+                    <a class="page-link" (click)="setPagina(paginaAtual + 1)" aria-label="Próximo">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </fieldset>
+</div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">{{tipoMensagem}}</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Cliente salvo com sucesso!
+        </div>
+    </div>
+</div>
